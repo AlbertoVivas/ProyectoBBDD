@@ -39,7 +39,6 @@ public class EmpleadoHibernateDAO implements Recuperable {
 			trans.rollback();
 		}finally{
 			SessionManager.disconectSession(session);
-			SessionManager.closeFactory();
 		}
 		return empleado;
 	}

@@ -9,6 +9,7 @@ import Empleados.EmployeesServices;
 
 
 import jdbc_DAO_DTO.EmpleadoDTO;
+import session.SessionManager;
 import tablas_Clases.Employees;
 import interfaceRecuperable.Recuperable;
 import empleado.Employee;
@@ -25,6 +26,7 @@ public class main {
 
 	public static void main(String[] args) throws SQLException {
 		int id = 150;
+		try{
 		EmployeesServices es = new EmployeesServices();
 		
 		Recuperable emp_hiber = new EmpleadoHibernateDAO();
@@ -39,5 +41,12 @@ public class main {
 		Recuperable emp_jpa = new EmpleadoJPADAO();
 		es.setRecuperable(emp_jpa);
 		System.out.println(es.leerEmpleado(id));
+		
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			SessionManager.closeFactory();
+		}
+		
 	}
 }
